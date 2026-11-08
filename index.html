@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI 自習ノート</title>
+<meta name="description" content="AI 入門・Claude Code・Codex・Grok Bot の4冊の自習ノートをまとめたメニュー。好きなノートに移れる。オフラインでも使える。">
+<meta name="theme-color" content="#2F3A45">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AI自習">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap">
+<style>
+/* Menu page for the four study notebooks. Same type and palette as the notebooks so moving between them feels like one app. */
+:root{
+  --bg:#F3F5F6; --surface:#FFFFFF; --sunk:#E3E8EB; --fg:#111A1F; --muted:#3D4850; --line:#C2CCD2;
+  --accent:#2F3A45; --ok:#22693F;
+  --c-basics:#5B3F8C; --c-claude:#255A47; --c-codex:#2D4A8A; --c-grok:#6A3D2A;
+  --f-body:"BIZ UDPGothic","Hiragino Sans","Yu Gothic UI","Meiryo",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12171B; --surface:#1A2126; --sunk:#232C32; --fg:#EEF2F4; --muted:#B9C4CB; --line:#3A464E;
+  --accent:#A9BCCB; --ok:#6FC38F;
+  --c-basics:#B9A2E3; --c-claude:#6FC3A2; --c-codex:#8DB0EC; --c-grok:#E0A98C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12171B; --surface:#1A2126; --sunk:#232C32; --fg:#EEF2F4; --muted:#B9C4CB; --line:#3A464E;
+  --accent:#A9BCCB; --ok:#6FC38F;
+  --c-basics:#B9A2E3; --c-claude:#6FC3A2; --c-codex:#8DB0EC; --c-grok:#E0A98C; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:17px;line-height:1.8;letter-spacing:.02em;-webkit-text-size-adjust:100%;overflow-wrap:anywhere}
+.wrap{max-width:720px;margin:0 auto;padding:max(20px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 56px max(16px,env(safe-area-inset-left,0px))}
+header h1{font-size:clamp(1.55rem,6.5vw,2.1rem);line-height:1.4;margin:.3em 0 .25em;text-wrap:balance}
+header p{margin:0;color:var(--muted);font-size:.97rem}
+h2{font-size:1rem;color:var(--muted);margin:28px 0 10px;letter-spacing:.06em}
+.list{display:grid;gap:12px}
+a.card{display:block;position:relative;background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--c);border-radius:12px;padding:14px 16px 14px 16px;color:var(--fg);text-decoration:none;transition:transform .12s,box-shadow .12s}
+a.card:hover{box-shadow:0 2px 10px rgb(0 0 0 / .08)}
+a.card:active{transform:scale(.99)}
+a.card:focus-visible{outline:3px solid var(--c);outline-offset:2px}
+.card .top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.card h3{margin:0;font-size:1.18rem;line-height:1.45;color:var(--c)}
+.card .go{flex:none;font-size:.9rem;font-weight:700;color:var(--c)}
+.card .role{margin:2px 0 0;font-size:.95rem}
+.card .meta{margin:6px 0 0;font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.card .tag{display:inline-block;font-size:.78rem;font-weight:700;color:#fff;background:var(--c);border-radius:999px;padding:1px 10px;margin-bottom:6px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .card .tag{color:#111A1F}}
+.prog{display:flex;align-items:center;gap:10px;margin-top:8px;font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.prog .bar{flex:1;height:6px;background:var(--sunk);border-radius:3px;overflow:hidden}
+.prog .bar i{display:block;height:100%;background:var(--c);width:0}
+.pass{color:var(--ok);font-weight:700}
+.note{margin-top:28px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:.92rem}
+.note h2{margin:0 0 4px;font-size:.98rem;color:var(--fg);letter-spacing:0}
+.note ol{margin:0;padding-left:1.3em}
+footer{margin-top:24px;font-size:.82rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>AI 自習ノート</h1>
+    <p>好きなノートを選んで始めてね。はじめての人は「AI 入門ノート」からがおすすめ。どのノートからも、上の「≡ メニュー」でここに戻れる。</p>
+  </header>
+
+  <h2>まずはここから</h2>
+  <div class="list" id="basics"></div>
+
+  <h2>専門ノート（製品ごとの専門テスト）</h2>
+  <div class="list" id="pro"></div>
+
+  <div class="note">
+    <h2>スマホで電波がなくても使うには</h2>
+    <ol>
+      <li>このページを Safari で開き、共有ボタン →「ホーム画面に追加」</li>
+      <li>通信のあるときに、使いたいノートを一度ずつ開いておく</li>
+      <li>あとはホーム画面のアイコン1つから、4冊とも電波なしで開ける</li>
+    </ol>
+  </div>
+  <footer>進み具合は、この端末のブラウザの中にだけ保存される。公式の資料ではなく、自習用に独自に作った教材。</footer>
+</div>
+
+<script>
+/* Each notebook keeps its progress in localStorage on this same origin, so the menu can show it. */
+const BOOKS = [
+  { group: "basics", href: "ai-basics-study/", name: "AI 入門ノート", tag: "最初の1冊", color: "--c-basics",
+    role: "3つの AI に共通する、頼み方・確かめ方・安全の基本", lessons: 18, quiz: 108, key: "ai-basics-v1" },
+  { group: "pro", href: "claude-code-study/", name: "Claude Code 自習ノート", color: "--c-claude",
+    role: "文章・構成・仕組みづくり担当。計画モード・権限・スキル・フックなど", lessons: 28, quiz: 168, key: "cc-study-v4" },
+  { group: "pro", href: "codex-study/", name: "Codex 自習ノート", color: "--c-codex",
+    role: "デザイン・画像・図解・スライド担当。権限モード・サンドボックス・AGENTS.md など", lessons: 24, quiz: 144, key: "codex-study-v2" },
+  { group: "pro", href: "grok-bot-study/", name: "Grok Bot 自習ノート", color: "--c-grok",
+    role: "司令塔。ローカル実行・Auto Review・ルーティン・依頼と報告の回し方など", lessons: 20, quiz: 120, key: "grok-study-v2" }
+];
+const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+function progress(b) {
+  let S = {};
+  try { S = JSON.parse(localStorage.getItem(b.key)) || {}; } catch (e) { S = {}; }
+  let done = 0;
+  for (const id in S) {
+    if (id === "__exam") continue;
+    const c = S[id] && S[id].checks;
+    if (Array.isArray(c) && c.filter(Boolean).length >= 3) done++;
+  }
+  const ex = S.__exam || {};
+  const passed = ["1", "2", "3"].filter((k) => ex[k] && ex[k].best != null && ex[k].best >= 16).length;
+  return { done: Math.min(done, b.lessons), passed };
+}
+function card(b) {
+  const p = progress(b);
+  const pct = Math.round((p.done / b.lessons) * 100);
+  return `<a class="card" href="${b.href}" style="--c:var(${b.color})">
+    ${b.tag ? `<span class="tag">${esc(b.tag)}</span>` : ""}
+    <div class="top"><h3>${esc(b.name)}</h3><span class="go" aria-hidden="true">開く →</span></div>
+    <p class="role">${esc(b.role)}</p>
+    <p class="meta">全${b.lessons}回・確認問題${b.quiz}問・修了テスト20問×3</p>
+    <div class="prog"><span>できた回 ${p.done}/${b.lessons}</span><div class="bar"><i style="width:${pct}%"></i></div>
+      <span class="${p.passed ? "pass" : ""}">修了 ${p.passed}/3</span></div>
+  </a>`;
+}
+function render() {
+  document.getElementById("basics").innerHTML = BOOKS.filter((b) => b.group === "basics").map(card).join("");
+  document.getElementById("pro").innerHTML = BOOKS.filter((b) => b.group === "pro").map(card).join("");
+}
+render();
+/* Coming back with the browser's back button can restore the page from memory, so refresh the numbers. */
+window.addEventListener("pageshow", render);
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("sw.js").catch(function () {});
+  });
+}
+</script>
+</body>
+</html>
